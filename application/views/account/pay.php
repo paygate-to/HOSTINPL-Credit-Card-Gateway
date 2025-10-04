@@ -1,17 +1,17 @@
 <?echo $header?>
-<?if($wert == 1):?>
+<?if($paygatehosted == 1):?>
 <div class="col-lg-4">
     <div class="card card-custom gutter-b">
         <div class="card-body">
-            <center><img src="/application/public/img/pay/wert.png" style="max-width:100%;height:65px;" alt=""></center>
+            <center><img src="/application/public/img/pay/paygatehosted.png" style="max-width:100%;height:65px;" alt=""></center>
         </div>
         <div class="card-footer">
-            <button data-toggle="modal" data-target="#wert" class="btn btn-primary btn-lg btn-block">Пополнить</button>
+            <button data-toggle="modal" data-target="#paygatehosted" class="btn btn-primary btn-lg btn-block">Пополнить</button>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="wert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="paygatehosted" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -20,7 +20,7 @@
                 <i aria-hidden="true" class="ki ki-close"></i>
                 </button>
             </div>
-            <form id="wert" method="POST" class="form_0" style="padding:0px; margin:0px;">
+            <form id="paygatehosted" method="POST" class="form_0" style="padding:0px; margin:0px;">
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Введите сумму</label>
@@ -37,8 +37,8 @@
 </div>
 
 <script>
-    $('#wert').ajaxForm({ 
-        url: '/account/pay/wert',
+    $('#paygatehosted').ajaxForm({ 
+        url: '/account/pay/paygatehosted',
         dataType: 'text',
         success: function(data) {
             console.log(data);

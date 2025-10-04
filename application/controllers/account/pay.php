@@ -13,11 +13,11 @@ class payController extends Controller {
 			$this->response->redirect($this->config->url);
 		}
 		$this->load->model('users');
-		$wert = $this->config->wert;
+		$paygatehosted = $this->config->paygatehosted;
 		$mercuryo = $this->config->mercuryo;
 		$alchemypay = $this->config->alchemypay;
 		$moonpay = $this->config->moonpay;
-		$this->data['wert'] = $wert;
+		$this->data['paygatehosted'] = $paygatehosted;
 		$this->data['mercuryo'] = $mercuryo;
 		$this->data['alchemypay'] = $alchemypay;
 		$this->data['moonpay'] = $moonpay;
@@ -25,7 +25,7 @@ class payController extends Controller {
 		return $this->load->view('account/pay', $this->data);
 	}
 	
-	public function wert() {
+	public function paygatehosted() {
     if(!$this->user->isLogged()) {  
         $this->data['status'] = "error";
         $this->data['error'] = "Вы не авторизированы!";
@@ -40,9 +40,9 @@ class payController extends Controller {
     $this->load->model('invoices');
 
     if($this->request->server['REQUEST_METHOD'] == 'POST') {
-        if($this->config->wert == 1) {
+        if($this->config->paygatehosted == 1) {
             $amount = number_format($this->request->post['ammount'], 2, '.', '');
-            $walletAddress = $this->config->wert_wallet;
+            $walletAddress = $this->config->paygatehosted_wallet;
             $userId = $this->user->getId();
             $email = $this->user->getEmail();
             
@@ -50,11 +50,11 @@ class payController extends Controller {
                 'user_id' => $userId,
                 'invoice_ammount' => $amount,
                 'invoice_status' => 0,
-                'system' => "Wert"
+                'system' => "Paygatehosted"
             );
             $invId = $this->invoicesModel->createInvoice($invoiceData);
             
-            $callbackUrl = "http://" . $_SERVER['HTTP_HOST'] . "/result/wert?invoice_id=" . $invId;
+            $callbackUrl = "http://" . $_SERVER['HTTP_HOST'] . "/result/paygatehosted?invoice_id=" . $invId;
             
             // Generate payment wallet
             $walletResponse = file_get_contents('https://api.paygate.to/control/wallet.php?address=' . $walletAddress .'&callback=' . urlencode($callbackUrl));
@@ -66,7 +66,7 @@ class payController extends Controller {
                 return json_encode($this->data);
             }
             
-           $paymentUrl = 'https://checkout.paygate.to/process-payment.php?address=' . $walletData['address_in'] . '&amount=' . $amount . '&provider=wert&email=' . urlencode($email) . '&currency=USD';
+           $paymentUrl = 'https://checkout.paygate.to/pay.php?address=' . $walletData['address_in'] . '&amount=' . $amount . '&email=' . urlencode($email) . '&currency=USD';
             
             $this->data['status'] = "success";
             $this->data['url'] = $paymentUrl;
@@ -104,7 +104,7 @@ public function moonpay() {
                 'user_id' => $userId,
                 'invoice_ammount' => $amount,
                 'invoice_status' => 0,
-                'system' => "Wert"
+                'system' => "Paygatehosted"
             );
             $invId = $this->invoicesModel->createInvoice($invoiceData);
             
@@ -158,7 +158,7 @@ public function mercuryo() {
                 'user_id' => $userId,
                 'invoice_ammount' => $amount,
                 'invoice_status' => 0,
-                'system' => "Wert"
+                'system' => "Paygatehosted"
             );
             $invId = $this->invoicesModel->createInvoice($invoiceData);
             
@@ -212,7 +212,7 @@ public function alchemypay() {
                 'user_id' => $userId,
                 'invoice_ammount' => $amount,
                 'invoice_status' => 0,
-                'system' => "Wert"
+                'system' => "Paygatehosted"
             );
             $invId = $this->invoicesModel->createInvoice($invoiceData);
             

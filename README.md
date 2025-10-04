@@ -13,8 +13,8 @@ HOSTINPL 5.6 accept Credit/Debit cards Visa - Mastercard instantly without sign 
 * Enable each gateway and set your own USDC wallet as follows:
 
 ```php
-'wert' => '1',
-'wert_wallet' => '0xF977814e90dA44bFA03b6295A0616a897441aceC',
+'paygatehosted' => '1',
+'paygatehosted_wallet' => '0xF977814e90dA44bFA03b6295A0616a897441aceC',
 'alchemypay' => '1',
 'alchemypay_wallet' => '0xF977814e90dA44bFA03b6295A0616a897441aceC',
 'mercuryo' => '1',
@@ -47,8 +47,8 @@ HOSTINPL 5.6 принимает кредитные/дебетовые карты
 * Включите каждый шлюз и установите свой собственный USDC кошелек следующим образом:
 
 ```php
-'wert' => '1',
-'wert_wallet' => '0xF977814e90dA44bFA03b6295A0616a897441aceC',
+'paygatehosted' => '1',
+'paygatehosted_wallet' => '0xF977814e90dA44bFA03b6295A0616a897441aceC',
 'alchemypay' => '1',
 'alchemypay_wallet' => '0xF977814e90dA44bFA03b6295A0616a897441aceC',
 'mercuryo' => '1',

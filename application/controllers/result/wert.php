@@ -1,5 +1,5 @@
 <?php
-class wertController extends Controller {
+class paygatehostedController extends Controller {
     public function index() {
         $this->load->model('users');
         $this->load->model('invoices');
